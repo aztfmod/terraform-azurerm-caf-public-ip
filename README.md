@@ -6,8 +6,9 @@ Creates an Azure public IP address (IPv4 or IPv6)
 Reference the module to a specific version (recommended):
 ```hcl
 module "public_ip_address" {
-    source                  = "git://github.com/aztfmod/public_ip_address.git?ref=v0.x"
-  
+    source  = "aztfmod/caf-public-ip/azurerm"
+    version = "0.1.0"
+
     name                              = var.name
     location                          = var.location
     rg                                = var.rg

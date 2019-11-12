@@ -65,11 +65,11 @@ location = "southeastasia"
 
 
 ## rg 
-Resourge group of the public IP to be created. 
+Resource group of the public IP to be created. 
 
 ```hcl 
 variable "rg" {
-  description = "(Required) Resourge group of the public IP to be created"    
+  description = "(Required) Resource group of the public IP to be created"    
 }
 ```
 Sample:

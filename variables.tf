@@ -7,7 +7,7 @@ variable "location" {
 }
 
 variable "rg" {
-  description = "(Required) Resourge group of the public IP to be created"    
+  description = "(Required) Resource group of the public IP to be created"    
 }
 
 variable "tags" {

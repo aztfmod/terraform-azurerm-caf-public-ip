@@ -5,7 +5,7 @@ resource "azurerm_public_ip" "public_ip" {
   allocation_method         = var.ip_addr.allocation_method
   tags                      = local.tags
 
-  sku                       = lookup(var.ip_addr, "sku"), null)
+  sku                       = lookup(var.ip_addr, "sku", null)
   ip_version                = lookup(var.ip_addr, "ip_version", null)   
   domain_name_label         = lookup(var.ip_addr, "dns_prefix", null) 
   idle_timeout_in_minutes   = lookup(var.ip_addr, "timeout", null) 

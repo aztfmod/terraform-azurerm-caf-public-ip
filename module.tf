@@ -1,15 +1,25 @@
-resource "azurerm_public_ip" "public_ip" {
-  name                      = var.name
-  location                  = var.location
-  resource_group_name       = var.rg
-  allocation_method         = var.ip_addr.allocation_method
-  tags                      = local.tags
+resource "azurerm_public_ip" "pip" {
+  for_each = var.pip_objects
 
-  sku                       = lookup(var.ip_addr, "sku", null)
-  ip_version                = lookup(var.ip_addr, "ip_version", null)   
-  domain_name_label         = lookup(var.ip_addr, "dns_prefix", null) 
-  idle_timeout_in_minutes   = lookup(var.ip_addr, "timeout", null) 
-  zones                     = lookup(var.ip_addr, "zones", null) 
-  reverse_fqdn              = lookup(var.ip_addr, "reverse_fqdn", null)
-  public_ip_prefix_id       = lookup(var.ip_addr, "public_ip_prefix_id", null)
+  name                    = "${var.prefix}-${each.value.name}"
+  location                = var.location
+  resource_group_name     = var.resource_group_name
+  allocation_method       = lookup(each.value, "allocation_method", "Dynamic")
+  sku                     = lookup(each.value, "sku", "Basic")
+  ip_version              = lookup(each.value, "ip_version", "IPv4")
+
+  idle_timeout_in_minutes = lookup(each.value, "idle_timeout_in_minutes", null)
+  domain_name_label       = lookup(each.value, "domain_name_label", random_string.domain_name_label.result)
+  reverse_fqdn            = lookup(each.value, "reverse_fqdn", null)
+
+  tags                    = local.tags
+  zones                   = lookup(each.value, "zones", null)
+}
+
+resource "random_string" "domain_name_label" {
+  length = 60
+  lower = true
+  upper = false
+  number = false
+  special = false
 }

@@ -1,13 +1,5 @@
-module "caf_name_gen" {
-  source = "../terraform-azurerm-caf-naming/"
-  
-  name    = var.name
-  type    = "gen"
-  convention  = var.convention
-}
-
 resource "azurerm_public_ip" "public_ip" {
-  name                      = module.caf_name_gen.gen
+  name                      = var.name
   location                  = var.location
   resource_group_name       = var.rg
   allocation_method         = var.ip_addr.allocation_method

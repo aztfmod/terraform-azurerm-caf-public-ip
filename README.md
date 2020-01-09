@@ -7,23 +7,8 @@ Reference the module to a specific version (recommended):
 ```hcl
 module "public_ip_address" {
     source  = "aztfmod/caf-public-ip/azurerm"
-    version = "0.1.0"
+    version = "0.x.y"
 
-    name                              = var.name
-    location                          = var.location
-    rg                                = var.rg
-    ip_addr                           = var.ipconfig
-    diagnostics_settings              = var.ipdiags
-    diagnostics_map                   = var.diagsmap
-    la_workspace_id                   = var.laworkspace.id
-}
-```
-
-Or get the latest version
-```hcl
-module "public_ip_address" {
-    source                  = "git://github.com/aztfmod/public_ip_address.git?ref=latest"
-  
     name                              = var.name
     location                          = var.location
     rg                                = var.rg
@@ -113,7 +98,6 @@ Example
   }
 ```
 
-
 ## tags
 (Required) Map of tags for the deployment
 ```hcl
@@ -183,43 +167,11 @@ diagnostics_settings = {
 ```
 
 # Output
-## object
-Returns the resource object of the created public IP.
-```hcl
-output "object" {
-  value = azurerm_public_ip.public_ip
-}
-```
 
-## name
-Returns the resource name of the created public IP.
-```hcl
-output "name" {
-  value = azurerm_public_ip.public_ip.name
-}
-
-```
-
-## id
-Returns the resource ID of the created public IP.
-```hcl
-output "id" {
-  value = azurerm_public_ip.public_ip.id
-}
-```
-
-## ip_address
-Returns the IP address of the created public IP.
-```hcl
-output "ip_address" {
-  value = azurerm_public_ip.public_ip.ip_address
-}
-```
-
-## fqdn
-Returns the FQDN of the created public IP.
-```hcl
-output "fqdn" {
-  value = azurerm_public_ip.public_ip.fqdn
-}
-```
+| Name | Type | Description | 
+| -- | -- | -- | 
+| object | object | Returns the full object of the created IP. |
+| name | string | Returns the name of the created Azure Firewall. |
+| id | string | Returns the ID of the created Azure Firewall. | 
+| ip_address | string | IP address |
+| fqdn | string | FQDN of the IP address if applicable |

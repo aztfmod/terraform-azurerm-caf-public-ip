@@ -36,7 +36,7 @@ module "diags_test" {
 module "public_ip_test" {
   source = "../../"
 
-  convention               = local.convention
+  convention                       = local.convention
   name                             = local.ip_addr_config.ip_name
   location                         = local.location
   rg                               = module.rg_test.names.test

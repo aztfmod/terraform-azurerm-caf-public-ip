@@ -2,7 +2,6 @@
 # Deploys a public IP address
 Creates an Azure public IP address (IPv4 or IPv6)
 
-
 Reference the module to a specific version (recommended):
 ```hcl
 module "public_ip_address" {
@@ -165,6 +164,19 @@ diagnostics_settings = {
     ]
 }
 ```
+
+## convention
+(Required) Naming convention to be used.
+```hcl
+variable "convention" {
+  description = "(Required) Naming convention used"
+}
+```
+Example
+```hcl
+convention = "cafclassic"
+```
+
 
 # Output
 

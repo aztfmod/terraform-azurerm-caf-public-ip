@@ -12,9 +12,9 @@ module "rg_test" {
 
 module "la_test" {
   source  = "aztfmod/caf-log-analytics/azurerm"
-  version = "0.1.0"
+  version = "1.0.0"
   
-    # convention          = local.convention
+    convention          = local.convention
     location            = local.location
     name                = local.name
     solution_plan_map   = local.solution_plan_map 
@@ -25,8 +25,10 @@ module "la_test" {
 
 module "diags_test" {
   source  = "aztfmod/caf-diagnostics-logging/azurerm"
-  version = "0.1.2"
+  version = "1.0.0"
 
+  convention            = local.convention
+  name                  = local.name
   resource_group_name   = module.rg_test.names.test
   prefix                = local.prefix
   location              = local.location

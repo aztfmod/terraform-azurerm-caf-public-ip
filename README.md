@@ -18,48 +18,22 @@ module "public_ip_address" {
 }
 ```
 
-# Parameters
+## Inputs 
 
-## name 
-(Required) Name of the public IP to be created.
+| Name | Type | Default | Description | 
+| -- | -- | -- | -- | 
+| name | string | None | Name of the public IP to be created |
+| rg | string | None | Name of the resource group where to create the resource. Changing this forces a new resource to be created. |
+| location | string | None | Specifies the Azure location to deploy the resource. Changing this forces a new resource to be created.  | 
+| tags | map | None | Map of tags for the deployment.  | 
+| log_analytics_workspace_id | string | None | Log Analytics Workspace ID. | 
+| diagnostics_map | map | None | Map with the diagnostics repository information.  | 
+| diagnostics_settings | object | None | Map with the diagnostics settings. See the required structure in the following example or in the diagnostics module documentation. | 
+| convention | string | None | Naming convention to be used (check at the naming convention module for possible values).  | 
+| prefix | string | None | Prefix to be used (to be deprecated). | 
+| ip_addr | object | None | Object with the settings for public IP deployment.  | 
 
-```hcl 
-variable "name" {
-  description = "(Required) Name of the public IP to be created"  
-}
-```
-
-Sample:
-```hcl 
-name = "mypip"
-```
-
-## location
-(Required) Location of the public IP to be created.
-```hcl 
-variable "location" {
-  description = "(Required) Location of the public IP to be created"   
-}
-```
-
-Sample:
-```hcl 
-location = "southeastasia"
-```
-
-
-## rg 
-Resource group of the public IP to be created. 
-
-```hcl 
-variable "rg" {
-  description = "(Required) Resource group of the public IP to be created"    
-}
-```
-Sample:
-```hcl 
-rg = "myrg"
-```
+## Parameters
 
 ## ip_addr
 (Required) The configuration object describing the public IP configuration
@@ -97,88 +71,7 @@ Example
   }
 ```
 
-## tags
-(Required) Map of tags for the deployment
-```hcl
-variable "tags" {
-  description = "(Required) map of tags for the deployment"
-}
-```
-Example
-```hcl
-tags = {
-    environment     = "DEV"
-    owner           = "Arnaud"
-    deploymentType  = "Terraform"
-  }
-```
-
-## la_workspace_id
-(Required) Log Analytics Repository ID
-```hcl
-variable "la_workspace_id" {
-  description = "Log Analytics Repository"
-}
-```
-Example
-```hcl
-la_workspace_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/arnaud-hub-operations/providers/microsoft.operationalinsights/workspaces/mylalogs"
-```
-
-## diagnostics_map
-(Required) Map with the diagnostics repository information"
-```hcl
-variable "diagnostics_map" {
- description = "(Required) Map with the diagnostics repository information"
-}
-```
-Example
-```hcl
-  diagnostics_map = {
-      diags_sa      = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/arnaud-hub-operations/providers/Microsoft.Storage/storageAccounts/opslogskumowxv"
-      eh_id         = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/arnaud-hub-operations/providers/Microsoft.EventHub/namespaces/opslogskumowxv"
-      eh_name       = "opslogskumowxv"
-  }
-```
-
-## diagnostics_settings
-(Required) Map with the diagnostics settings for public IP address deployment.
-See the required structure in the following example or in the diagnostics module documentation.
-
-```hcl
-variable "diagnostics_settings" {
- description = "(Required) Map with the diagnostics settings for public IP deployment"
-}
-```
-Example
-```hcl
-diagnostics_settings = {
-    log = [
-                #["Category name",  "Diagnostics Enabled(true/false)", "Retention Enabled(true/false)", Retention_period] 
-                ["DDoSProtectionNotifications", true, true, 30],
-                ["DDoSMitigationFlowLogs", true, true, 30],
-                ["DDoSMitigationReports", true, true, 30],
-        ]
-    metric = [
-               ["AllMetrics", true, true, 30],
-    ]
-}
-```
-
-## convention
-(Required) Naming convention to be used.
-```hcl
-variable "convention" {
-  description = "(Required) Naming convention used"
-}
-```
-Example
-```hcl
-convention = "cafclassic"
-```
-
-
-# Output
+## Outputs
 
 | Name | Type | Description | 
 | -- | -- | -- | 

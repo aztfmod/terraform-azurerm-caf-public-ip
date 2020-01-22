@@ -43,7 +43,7 @@ variable "diagnostics_settings" {
 # }
 
 variable "ip_addr" {
- description = "(Required) Map with the settings for public IP deployment"
+ description = "(Required) Object with the settings for public IP deployment"
 }
 
 # Example of ip_addr configuration object

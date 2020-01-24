@@ -1,6 +1,6 @@
 module "diagnostics_pip" {
   source  = "aztfmod/caf-diagnostics/azurerm"
-  version = "0.1.1"
+  version = "1.0.0"
 
     name                            = azurerm_public_ip.public_ip.name
     resource_id                     = azurerm_public_ip.public_ip.id

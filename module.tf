@@ -1,5 +1,14 @@
+module "caf_name_pip" {
+  source  = "aztfmod/caf-naming/azurerm"
+  version = "~> 0.1.0"
+  
+  name    = var.name
+  type    = "pip"
+  convention  = var.convention
+}
+
 resource "azurerm_public_ip" "public_ip" {
-  name                      = var.name
+  name                      = module.caf_name_pip.pip
   location                  = var.location
   resource_group_name       = var.rg
   allocation_method         = var.ip_addr.allocation_method

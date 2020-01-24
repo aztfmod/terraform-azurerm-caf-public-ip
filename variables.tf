@@ -43,7 +43,7 @@ variable "diagnostics_settings" {
 # }
 
 variable "ip_addr" {
- description = "(Required) Map with the settings for public IP deployment"
+ description = "(Required) Object with the settings for public IP deployment"
 }
 
 # Example of ip_addr configuration object
@@ -64,3 +64,7 @@ variable "ip_addr" {
 #       #public_ip_prefix_id = "/subscriptions/783438ca-d497-4350-aa36-dc55fb0983ab/resourceGroups/uqvh-hub-ingress-net/providers/Microsoft.Network/publicIPPrefixes/myprefix"
 #       #refer to the prefix and check sku types are same in IP and prefix 
 # }
+
+variable "convention" {
+  description = "(Required) Naming convention method to use"  
+}

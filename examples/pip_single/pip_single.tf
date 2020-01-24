@@ -33,6 +33,7 @@ module "diags_test" {
   prefix                = local.prefix
   location              = local.location
   tags                  = local.tags
+  enable_event_hub      = local.enable_event_hub
 }
 
 module "public_ip_test" {

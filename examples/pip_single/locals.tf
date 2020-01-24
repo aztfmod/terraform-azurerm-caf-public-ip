@@ -19,6 +19,7 @@ locals {
             "product"   = "OMSGallery/NetworkMonitoring"
         },
     }
+    enable_event_hub = false
     
     ip_addr_config = {
         ip_name = "arnaud-pip-egress"    

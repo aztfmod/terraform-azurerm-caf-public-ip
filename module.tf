@@ -1,14 +1,14 @@
-module "caf_name_pip" {
-  source  = "aztfmod/caf-naming/azurerm"
-  version = "~> 0.1.0"
-  
-  name    = var.name
-  type    = "pip"
-  convention  = var.convention
+resource "azurecaf_naming_convention" "caf_name_pip" {  
+  name          = var.name
+  prefix        = var.prefix != "" ? var.prefix : null
+  postfix       = var.postfix != "" ? var.postfix : null
+  max_length    = var.max_length != "" ? var.max_length : null
+  resource_type = "azurerm_public_ip"
+  convention    = var.convention
 }
 
 resource "azurerm_public_ip" "public_ip" {
-  name                      = module.caf_name_pip.pip
+  name                      = azurecaf_naming_convention.caf_name_pip.result
   location                  = var.location
   resource_group_name       = var.rg
   allocation_method         = var.ip_addr.allocation_method

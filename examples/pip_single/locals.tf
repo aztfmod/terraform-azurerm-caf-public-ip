@@ -1,5 +1,5 @@
 locals {
-    convention = "cafrandom"
+    convention = "cafclassic"
     name = "caftest"
     location = "southeastasia"
     prefix = ""
@@ -22,7 +22,7 @@ locals {
     enable_event_hub = false
     
     ip_addr_config = {
-        ip_name = "arnaud-pip-egress"    
+        ip_name = "arnaud-egress"    
         allocation_method   = "Static"
         #Dynamic Public IP Addresses aren't allocated until they're assigned to a resource (such as a Virtual Machine or a Load Balancer) by design within Azure 
         

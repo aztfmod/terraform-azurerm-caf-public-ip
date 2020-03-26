@@ -6,7 +6,7 @@ variable "location" {
   description = "(Required) Location of the public IP to be created"   
 }
 
-variable "rg" {
+variable "resource_group_name" {
   description = "(Required) Resource group of the public IP to be created"    
 }
 
@@ -68,3 +68,22 @@ variable "ip_addr" {
 variable "convention" {
   description = "(Required) Naming convention method to use"  
 }
+
+variable "prefix" {
+  description = "(Optional) You can use a prefix to the name of the resource"
+  type        = string
+  default = ""
+}
+
+variable "postfix" {
+  description = "(Optional) You can use a postfix to the name of the resource"
+  type        = string
+  default = ""
+}
+
+variable "max_length" {
+  description = "(Optional) You can speficy a maximum length to the name of the resource"
+  type        = string
+  default = ""
+}
+

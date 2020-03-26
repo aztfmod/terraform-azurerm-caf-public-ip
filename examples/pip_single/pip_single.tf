@@ -15,9 +15,8 @@ resource "azurerm_resource_group" "rg_test" {
 }
 
 module "la_test" {
-  # source  = "aztfmod/caf-log-analytics/azurerm"
-  # version = "1.0.0"
-  source = "git://github.com/aztfmod/terraform-azurerm-caf-log-analytics?ref=2003-refresh" 
+  source  = "aztfmod/caf-log-analytics/azurerm"
+  version = "2.0.0"
 
     convention          = local.convention
     location            = local.location
@@ -29,9 +28,8 @@ module "la_test" {
 }
 
 module "diags_test" {
-  # source  = "aztfmod/caf-diagnostics-logging/azurerm"
-  # version = "1.0.0"
-  source = "git://github.com/aztfmod/terraform-azurerm-caf-diagnostics-logging?ref=2003-refresh"
+  source  = "aztfmod/caf-diagnostics-logging/azurerm"
+  version = "2.0.0"
 
   convention            = local.convention
   name                  = local.name

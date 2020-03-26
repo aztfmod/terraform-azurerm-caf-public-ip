@@ -10,7 +10,7 @@ resource "azurecaf_naming_convention" "caf_name_pip" {
 resource "azurerm_public_ip" "public_ip" {
   name                      = azurecaf_naming_convention.caf_name_pip.result
   location                  = var.location
-  resource_group_name       = var.rg
+  resource_group_name       = var.resource_group_name
   allocation_method         = var.ip_addr.allocation_method
   tags                      = local.tags
 

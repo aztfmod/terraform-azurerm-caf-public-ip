@@ -1,4 +1,5 @@
-[![Build status](https://dev.azure.com/azure-terraform/Blueprints/_apis/build/status/modules/public_ip_address)](https://dev.azure.com/azure-terraform/Blueprints/_build/latest?definitionId=0)
+[![Gitter](https://badges.gitter.im/aztfmod/community.svg)](https://gitter.im/aztfmod/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 # Deploys a public IP address
 Creates an Azure public IP address (IPv4 or IPv6)
 
@@ -10,7 +11,7 @@ module "public_ip_address" {
 
     name                              = var.name
     location                          = var.location
-    rg                                = var.rg
+    resource_group_name               = var.rg
     ip_addr                           = var.ipconfig
     diagnostics_settings              = var.ipdiags
     diagnostics_map                   = var.diagsmap
@@ -23,19 +24,21 @@ module "public_ip_address" {
 | Name | Type | Default | Description | 
 | -- | -- | -- | -- | 
 | name | string | None | Name of the public IP to be created |
-| rg | string | None | Name of the resource group where to create the resource. Changing this forces a new resource to be created. |
+| resource_group_name | string | None | Name of the resource group where to create the resource. Changing this forces a new resource to be created. |
 | location | string | None | Specifies the Azure location to deploy the resource. Changing this forces a new resource to be created.  | 
 | tags | map | None | Map of tags for the deployment.  | 
 | log_analytics_workspace_id | string | None | Log Analytics Workspace ID. | 
 | diagnostics_map | map | None | Map with the diagnostics repository information.  | 
 | diagnostics_settings | object | None | Map with the diagnostics settings. See the required structure in the following example or in the diagnostics module documentation. | 
 | convention | string | None | Naming convention to be used (check at the naming convention module for possible values).  | 
-| prefix | string | None | Prefix to be used (to be deprecated). | 
+| prefix | string | None | (Optional) Prefix to be used. |
+| postfix | string | None | (Optional) Postfix to be used. |
+| max_length | string | None | (Optional) maximum length to the name of the resource. |
 | ip_addr | object | None | Object with the settings for public IP deployment.  | 
 
 ## Parameters
 
-## ip_addr
+### ip_addr
 (Required) The configuration object describing the public IP configuration
 Mandatory properties are:
 - allocation_method

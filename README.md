@@ -22,6 +22,44 @@ module "public_ip_address" {
 ```
 
 <!--- BEGIN_TF_DOCS --->
+## Requirements
+
+No requirements.
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| azurecaf | n/a |
+| azurerm | n/a |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| convention | (Required) Naming convention method to use | `any` | n/a | yes |
+| diagnostics\_map | (Required) Storage account and Event Hub for the IP address diagnostics | `any` | n/a | yes |
+| diagnostics\_settings | (Required) Map with the diagnostics settings for public IP deployment | `any` | n/a | yes |
+| ip\_addr | (Required) Object with the settings for public IP deployment | `any` | n/a | yes |
+| location | (Required) Location of the public IP to be created | `any` | n/a | yes |
+| log\_analytics\_workspace\_id | (Required) Log Analytics ID for the IP address diagnostics | `any` | n/a | yes |
+| max\_length | (Optional) You can speficy a maximum length to the name of the resource | `string` | `""` | no |
+| name | (Required) Name of the public IP to be created | `any` | n/a | yes |
+| postfix | (Optional) You can use a postfix to the name of the resource | `string` | `""` | no |
+| prefix | (Optional) You can use a prefix to the name of the resource | `string` | `""` | no |
+| resource\_group\_name | (Required) Resource group of the public IP to be created | `any` | n/a | yes |
+| tags | (Required) Tags to be applied to the IP address to be created | `any` | n/a | yes |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| fqdn | Output the fully qualified domain name |
+| id | Output the object ID |
+| ip\_address | Output the ip address |
+| name | Output the object name |
+| object | Output the full object |
+
 <!--- END_TF_DOCS --->
 
 ## Parameters

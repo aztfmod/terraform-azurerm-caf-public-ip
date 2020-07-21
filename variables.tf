@@ -86,4 +86,3 @@ variable "max_length" {
   type        = string
   default = ""
 }
-

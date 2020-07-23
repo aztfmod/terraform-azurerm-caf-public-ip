@@ -1,3 +1,8 @@
+## v2.1 (July 2020)
+
+FEATURES: 
+* **new feature:**  Add support for Terraform 0.13 ([#11](https://github.com/aztfmod/terraform-azurerm-caf-public-ip/issues/11))
+
 ## v2.0 (March 2020)
 
 FEATURES: 

@@ -1,3 +1,4 @@
+[![VScodespaces](https://img.shields.io/endpoint?url=https%3A%2F%2Faka.ms%2Fvso-badge)](https://online.visualstudio.com/environments/new?name=terraform-azurerm-caf-public-ip&repo=aztfmod/terraform-azurerm-caf-public-ip)
 [![Gitter](https://badges.gitter.im/aztfmod/community.svg)](https://gitter.im/aztfmod/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # Deploys a public IP address
@@ -6,35 +7,61 @@ Creates an Azure public IP address (IPv4 or IPv6)
 Reference the module to a specific version (recommended):
 ```hcl
 module "public_ip_address" {
-    source  = "aztfmod/caf-public-ip/azurerm"
-    version = "0.x.y"
+  source  = "aztfmod/caf-public-ip/azurerm"
+  version = "0.x.y"
 
-    name                              = var.name
-    location                          = var.location
-    resource_group_name               = var.rg
-    ip_addr                           = var.ipconfig
-    diagnostics_settings              = var.ipdiags
-    diagnostics_map                   = var.diagsmap
-    la_workspace_id                   = var.laworkspace.id
+  convention                       = local.convention
+  name                             = local.ip_addr_config.ip_name
+  location                         = local.location
+  resource_group_name              = azurerm_resource_group.rg_test.name
+  ip_addr                          = local.ip_addr_config
+  tags                             = local.tags
+  diagnostics_map                  = module.diags_test.diagnostics_map
+  log_analytics_workspace_id       = module.la_test.id
+  diagnostics_settings             = local.ip_addr_config.diagnostics
 }
 ```
 
-## Inputs 
+<!--- BEGIN_TF_DOCS --->
+## Requirements
 
-| Name | Type | Default | Description | 
-| -- | -- | -- | -- | 
-| name | string | None | Name of the public IP to be created |
-| resource_group_name | string | None | Name of the resource group where to create the resource. Changing this forces a new resource to be created. |
-| location | string | None | Specifies the Azure location to deploy the resource. Changing this forces a new resource to be created.  | 
-| tags | map | None | Map of tags for the deployment.  | 
-| log_analytics_workspace_id | string | None | Log Analytics Workspace ID. | 
-| diagnostics_map | map | None | Map with the diagnostics repository information.  | 
-| diagnostics_settings | object | None | Map with the diagnostics settings. See the required structure in the following example or in the diagnostics module documentation. | 
-| convention | string | None | Naming convention to be used (check at the naming convention module for possible values).  | 
-| prefix | string | None | (Optional) Prefix to be used. |
-| postfix | string | None | (Optional) Postfix to be used. |
-| max_length | string | None | (Optional) maximum length to the name of the resource. |
-| ip_addr | object | None | Object with the settings for public IP deployment.  | 
+No requirements.
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| azurecaf | n/a |
+| azurerm | n/a |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| convention | (Required) Naming convention method to use | `any` | n/a | yes |
+| diagnostics\_map | (Required) Storage account and Event Hub for the IP address diagnostics | `any` | n/a | yes |
+| diagnostics\_settings | (Required) Map with the diagnostics settings for public IP deployment | `any` | n/a | yes |
+| ip\_addr | (Required) Object with the settings for public IP deployment | `any` | n/a | yes |
+| location | (Required) Location of the public IP to be created | `any` | n/a | yes |
+| log\_analytics\_workspace\_id | (Required) Log Analytics ID for the IP address diagnostics | `any` | n/a | yes |
+| max\_length | (Optional) You can speficy a maximum length to the name of the resource | `string` | `""` | no |
+| name | (Required) Name of the public IP to be created | `any` | n/a | yes |
+| postfix | (Optional) You can use a postfix to the name of the resource | `string` | `""` | no |
+| prefix | (Optional) You can use a prefix to the name of the resource | `string` | `""` | no |
+| resource\_group\_name | (Required) Resource group of the public IP to be created | `any` | n/a | yes |
+| tags | (Required) Tags to be applied to the IP address to be created | `any` | n/a | yes |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| fqdn | Output the fully qualified domain name |
+| id | Output the object ID |
+| ip\_address | Output the ip address |
+| name | Output the object name |
+| object | Output the full object |
+
+<!--- END_TF_DOCS --->
 
 ## Parameters
 
@@ -56,7 +83,8 @@ variable "ip_addr" {
  description = "(Required) Map with the settings for public IP deployment"
 }
 ```
-Example
+Example:
+
 ```hcl
   ip_addr = {
         allocation_method   = "Static"
@@ -73,13 +101,3 @@ Example
         #refer to the prefix and check sku types are same in IP and prefix 
   }
 ```
-
-## Outputs
-
-| Name | Type | Description | 
-| -- | -- | -- | 
-| object | object | Returns the full object of the created IP. |
-| name | string | Returns the name of the created Azure Firewall. |
-| id | string | Returns the ID of the created Azure Firewall. | 
-| ip_address | string | IP address |
-| fqdn | string | FQDN of the IP address if applicable |
